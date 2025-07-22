@@ -26,10 +26,9 @@ Public Class Pesquisa
         If rbNome.Checked = True Then
             dgvResultado.DataSource = helperSql.Select_(colunas, "produtos", colunaPesquisa, like_:=pesquisa)
         Else
-            Dim d1 = DateTimePicker1.Value '.ToString("yyyy-MM-dd HH:mm:ss")
-            Dim d2 = DateTimePicker1.Value.AddDays(1) '.ToString("yyyy-MM-dd HH:mm:ss")
-            Console.WriteLine(d1)
-            Console.WriteLine(d2)
+            Dim d1 = DateTimePicker1.Value.Date '.ToString("yyyy-MM-dd")
+            Dim d2 = d1.AddDays(1) '.ToString("yyyy-MM-dd")
+
             Dim query = $"SELECT {String.Join(", ", colunas)} FROM produtos WHERE created >= @d1 AND created < @d2"
             Try
                 Using con As New SqlConnection(helperSql.strCon)
