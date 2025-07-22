@@ -17,6 +17,19 @@
         dgvProdutos.Rows(linhaSelecionada).Selected = True
     End Sub
 
+    Private Sub Alertas()
+        Dim allProds = prod.SelectAllProdutos
+        Dim cont = 0
+        For Each p In allProds.Rows
+            'Console.WriteLine($"Quant: {p("quantidade")}")
+            If p("quantidade") < 15 Then
+                cont += 1
+            End If
+        Next
+
+        MessageBox.Show($"Há {cont} produtos com baixo estoque! Eles ficarão em amarelo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    End Sub
+
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AtualizaDgv()
         dgvProdutos.Columns("id").Visible = False
@@ -27,6 +40,7 @@
         dgvProdutos.Columns("Preço de venda").Width = 80
         dgvProdutos.Columns("Criado em").Width = 120
         dgvProdutos.Columns("Modificado em").Width = 120
+        Alertas()
     End Sub
 
     Private Sub GerenciarProdutoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GerenciarProdutoToolStripMenuItem.Click
@@ -57,7 +71,22 @@
 
     Private Sub PesquisaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PesquisaToolStripMenuItem.Click
         Pesquisa.ShowDialog()
-        'SetIdSelecionado()
-        'SetLinhaSelecionada()
+    End Sub
+
+    Private Sub dgvProdutos_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvProdutos.CellFormatting
+        Dim dgv As DataGridView = CType(sender, DataGridView)
+
+        ' Verifica se a coluna é "Quantidade"
+        If dgv.Columns(e.ColumnIndex).Name = "Quantidade" Then
+            If e.Value IsNot Nothing AndAlso IsNumeric(e.Value) Then
+                Dim valor As Integer = Convert.ToInt32(e.Value)
+
+                If valor < 15 Then
+                    dgv.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.LightYellow
+                Else
+                    dgv.Rows(e.RowIndex).DefaultCellStyle.BackColor = Color.White
+                End If
+            End If
+        End If
     End Sub
 End Class
