@@ -48,7 +48,7 @@ Public Class HistoricoMovimentacoes
                     Dim da As New SqlDataAdapter(cmd)
                     da.Fill(dt)
                 Catch ex As Exception
-
+                    Throw
                 End Try
             End Using
         End Using
@@ -57,6 +57,24 @@ Public Class HistoricoMovimentacoes
         cbProds.DisplayMember = "nome"
         cbProds.ValueMember = "id"
 
-        cbProds.SelectedValue = Form1.IdSelecionado
+        'cbProds.SelectedValue = Form1.IdSelecionado
+
+        Dim result As Boolean = False
+        For Each valor In dt.Rows
+            'Console.WriteLine($"Valor: {valor("id")}")
+            If valor("id") = Form1.IdSelecionado Then
+                'cbProds.SelectedValue = Form1.IdSelecionado
+                result = True
+                Exit For
+            End If
+        Next
+
+        If result Then
+            cbProds.SelectedValue = Form1.IdSelecionado
+        Else
+            MessageBox.Show("Nenhum histórico encontrado!", "Históricos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
+            Close()
+        End If
+
     End Sub
 End Class
