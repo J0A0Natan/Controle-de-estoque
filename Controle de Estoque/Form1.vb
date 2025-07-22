@@ -27,7 +27,9 @@
             End If
         Next
 
-        MessageBox.Show($"Há {cont} produtos com baixo estoque! Eles ficarão em amarelo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        If cont > 0 Then
+            MessageBox.Show($"Há {cont} produtos com baixo estoque!" & vbCrLf & "Eles ficarão em amarelo", "Alerta", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End If
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
