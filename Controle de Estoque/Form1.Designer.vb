@@ -26,11 +26,11 @@ Partial Class Form1
         Me.dgvProdutos = New System.Windows.Forms.DataGridView()
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.AçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AdicionarAoEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.RemoverDoEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.PesquisaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.GerenciarProdutoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistoricoDeMovimentaçõesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.PesquisaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AdicionarAoEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.RemoverDoEstoqueToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         CType(Me.dgvProdutos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.MenuStrip1.SuspendLayout()
         Me.SuspendLayout()
@@ -60,7 +60,7 @@ Partial Class Form1
         '
         'MenuStrip1
         '
-        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AçõesToolStripMenuItem, Me.PesquisaToolStripMenuItem})
+        Me.MenuStrip1.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AçõesToolStripMenuItem, Me.AdicionarAoEstoqueToolStripMenuItem, Me.RemoverDoEstoqueToolStripMenuItem})
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Size = New System.Drawing.Size(1018, 24)
@@ -69,22 +69,16 @@ Partial Class Form1
         '
         'AçõesToolStripMenuItem
         '
-        Me.AçõesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AdicionarAoEstoqueToolStripMenuItem, Me.RemoverDoEstoqueToolStripMenuItem, Me.GerenciarProdutoToolStripMenuItem, Me.HistoricoDeMovimentaçõesToolStripMenuItem})
+        Me.AçõesToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.PesquisaToolStripMenuItem, Me.GerenciarProdutoToolStripMenuItem, Me.HistoricoDeMovimentaçõesToolStripMenuItem})
         Me.AçõesToolStripMenuItem.Name = "AçõesToolStripMenuItem"
-        Me.AçõesToolStripMenuItem.Size = New System.Drawing.Size(51, 20)
-        Me.AçõesToolStripMenuItem.Text = "Ações"
+        Me.AçõesToolStripMenuItem.Size = New System.Drawing.Size(59, 20)
+        Me.AçõesToolStripMenuItem.Text = "Opções"
         '
-        'AdicionarAoEstoqueToolStripMenuItem
+        'PesquisaToolStripMenuItem
         '
-        Me.AdicionarAoEstoqueToolStripMenuItem.Name = "AdicionarAoEstoqueToolStripMenuItem"
-        Me.AdicionarAoEstoqueToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
-        Me.AdicionarAoEstoqueToolStripMenuItem.Text = "Adicionar ao estoque"
-        '
-        'RemoverDoEstoqueToolStripMenuItem
-        '
-        Me.RemoverDoEstoqueToolStripMenuItem.Name = "RemoverDoEstoqueToolStripMenuItem"
-        Me.RemoverDoEstoqueToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
-        Me.RemoverDoEstoqueToolStripMenuItem.Text = "Remover do estoque"
+        Me.PesquisaToolStripMenuItem.Name = "PesquisaToolStripMenuItem"
+        Me.PesquisaToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
+        Me.PesquisaToolStripMenuItem.Text = "Pesquisa"
         '
         'GerenciarProdutoToolStripMenuItem
         '
@@ -98,11 +92,17 @@ Partial Class Form1
         Me.HistoricoDeMovimentaçõesToolStripMenuItem.Size = New System.Drawing.Size(226, 22)
         Me.HistoricoDeMovimentaçõesToolStripMenuItem.Text = "Historico de movimentações"
         '
-        'PesquisaToolStripMenuItem
+        'AdicionarAoEstoqueToolStripMenuItem
         '
-        Me.PesquisaToolStripMenuItem.Name = "PesquisaToolStripMenuItem"
-        Me.PesquisaToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
-        Me.PesquisaToolStripMenuItem.Text = "Pesquisa"
+        Me.AdicionarAoEstoqueToolStripMenuItem.Name = "AdicionarAoEstoqueToolStripMenuItem"
+        Me.AdicionarAoEstoqueToolStripMenuItem.Size = New System.Drawing.Size(131, 20)
+        Me.AdicionarAoEstoqueToolStripMenuItem.Text = "Adicionar ao estoque"
+        '
+        'RemoverDoEstoqueToolStripMenuItem
+        '
+        Me.RemoverDoEstoqueToolStripMenuItem.Name = "RemoverDoEstoqueToolStripMenuItem"
+        Me.RemoverDoEstoqueToolStripMenuItem.Size = New System.Drawing.Size(128, 20)
+        Me.RemoverDoEstoqueToolStripMenuItem.Text = "Remover do estoque"
         '
         'Form1
         '
@@ -126,9 +126,9 @@ Partial Class Form1
     Friend WithEvents dgvProdutos As DataGridView
     Friend WithEvents MenuStrip1 As MenuStrip
     Friend WithEvents AçõesToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents GerenciarProdutoToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents HistoricoDeMovimentaçõesToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents AdicionarAoEstoqueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents RemoverDoEstoqueToolStripMenuItem As ToolStripMenuItem
     Friend WithEvents PesquisaToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents GerenciarProdutoToolStripMenuItem As ToolStripMenuItem
-    Friend WithEvents HistoricoDeMovimentaçõesToolStripMenuItem As ToolStripMenuItem
 End Class

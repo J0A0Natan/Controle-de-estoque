@@ -41,17 +41,23 @@
         HistoricoMovimentacoes.ShowDialog()
     End Sub
 
-    Private Sub AdicionarAoEstoqueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdicionarAoEstoqueToolStripMenuItem.Click
+    Private Sub AdicionarAoEstoqueToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles AdicionarAoEstoqueToolStripMenuItem.Click
         SetIdSelecionado()
         AdicionarEstoque.ShowDialog()
         SetLinhaSelecionada()
         AtualizaDgv()
     End Sub
 
-    Private Sub RemoverDoEstoqueToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles RemoverDoEstoqueToolStripMenuItem.Click
+    Private Sub RemoverDoEstoqueToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles RemoverDoEstoqueToolStripMenuItem.Click
         SetIdSelecionado()
         RemoverEstoque.ShowDialog()
         SetLinhaSelecionada()
         AtualizaDgv()
+    End Sub
+
+    Private Sub PesquisaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PesquisaToolStripMenuItem.Click
+        Pesquisa.ShowDialog()
+        'SetIdSelecionado()
+        'SetLinhaSelecionada()
     End Sub
 End Class
