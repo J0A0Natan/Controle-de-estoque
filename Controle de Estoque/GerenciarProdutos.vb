@@ -19,16 +19,25 @@ Public Class GerenciarProdutos
         Dim colunas As New List(Of String) From {{"nome"}, {"descricao"}, {"preco_custo"}, {"preco_venda"}}
         Dim dt = helperSql.Select_(colunas, "produtos", "id", cbProdutosEdit.SelectedValue)
         txtNomeEdit.Text = dt(0)("nome")
-        txtDescricaoEdit.Text = dt(0)("descricao").ToString
-        txtPrecoProdEdit.Text = dt(0)("preco_custo")
+        txtDescEdit.Text = dt(0)("descricao").ToString
+        txtPrecoFabEdit.Text = dt(0)("preco_custo")
         txtPrecoVendaEdit.Text = dt(0)("preco_venda")
     End Sub
 
     Private Sub btnSalvar_Click(sender As Object, e As EventArgs) Handles btnSalvarEdit.Click
+        Dim campos As New Dictionary(Of TextBox, String) From {
+            {txtNomeEdit, "Nome do Produto"},
+            {txtDescEdit, "Descrição"},
+            {txtPrecoFabEdit, "Preço de Fabricação"},
+            {txtPrecoVendaEdit, "Preço de Venda"}
+        }
+
+        If Not CamposPreenchidos(campos) Then Exit Sub
+
         Dim valoresEcolunas As New Dictionary(Of String, Object) From {
             {"nome", txtNomeEdit.Text},
-            {"descricao", txtDescricaoEdit.Text},
-            {"preco_custo", Double.Parse(txtPrecoProdEdit.Text)},
+            {"descricao", txtDescEdit.Text},
+            {"preco_custo", Double.Parse(txtPrecoFabEdit.Text)},
             {"preco_venda", Double.Parse(txtPrecoVendaEdit.Text)},
             {"modified", Date.Now}}
         If prod.UpdateProduto(valoresEcolunas, "id", cbProdutosEdit.SelectedValue) Then
@@ -37,6 +46,17 @@ Public Class GerenciarProdutos
     End Sub
 
     Private Sub btnCadastrar_Click(sender As Object, e As EventArgs) Handles btnCadastrar.Click
+
+        Dim campos As New Dictionary(Of TextBox, String) From {
+            {txtNomeCad, "Nome do Produto"},
+            {txtDescCad, "Descrição"},
+            {txtQuantCad, "Quantidade"},
+            {txtPrecoFabCad, "Preço de Fabricação"},
+            {txtPrecoVendaCad, "Preço de Venda"}
+        }
+
+        If Not CamposPreenchidos(campos) Then Exit Sub
+
         Dim colunasValores As New Dictionary(Of String, Object) From {
             {"nome", txtNomeCad.Text},
             {"descricao", txtDescCad.Text},
@@ -72,5 +92,16 @@ Public Class GerenciarProdutos
     Private Sub AtualizaProds()
         cbProdutosEdit.DataSource = prod.SelectAllProdutos()
     End Sub
+
+    Private Function CamposPreenchidos(campos As Dictionary(Of TextBox, String)) As Boolean
+        For Each item In campos
+            If String.IsNullOrWhiteSpace(item.Key.Text) Then
+                MessageBox.Show($"O campo '{item.Value}' está vazio.", "Atenção", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                item.Key.Focus()
+                Return False
+            End If
+        Next
+        Return True
+    End Function
 
 End Class

@@ -23,8 +23,8 @@ Partial Class GerenciarProdutos
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.txtNomeEdit = New System.Windows.Forms.TextBox()
-        Me.txtDescricaoEdit = New System.Windows.Forms.TextBox()
-        Me.txtPrecoProdEdit = New System.Windows.Forms.TextBox()
+        Me.txtDescEdit = New System.Windows.Forms.TextBox()
+        Me.txtPrecoFabEdit = New System.Windows.Forms.TextBox()
         Me.txtPrecoVendaEdit = New System.Windows.Forms.TextBox()
         Me.lblNome = New System.Windows.Forms.Label()
         Me.lblDescricao = New System.Windows.Forms.Label()
@@ -33,6 +33,7 @@ Partial Class GerenciarProdutos
         Me.gbEditar = New System.Windows.Forms.GroupBox()
         Me.btnSalvarEdit = New System.Windows.Forms.Button()
         Me.gbProdutos = New System.Windows.Forms.GroupBox()
+        Me.btnDeletar = New System.Windows.Forms.Button()
         Me.cbProdutosEdit = New System.Windows.Forms.ComboBox()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.tpEditar = New System.Windows.Forms.TabPage()
@@ -49,7 +50,6 @@ Partial Class GerenciarProdutos
         Me.lblDescCad = New System.Windows.Forms.Label()
         Me.txtQuantCad = New System.Windows.Forms.TextBox()
         Me.txtPrecoFabCad = New System.Windows.Forms.TextBox()
-        Me.btnDeletar = New System.Windows.Forms.Button()
         Me.gbEditar.SuspendLayout()
         Me.gbProdutos.SuspendLayout()
         Me.TabControl1.SuspendLayout()
@@ -65,19 +65,19 @@ Partial Class GerenciarProdutos
         Me.txtNomeEdit.Size = New System.Drawing.Size(342, 20)
         Me.txtNomeEdit.TabIndex = 0
         '
-        'txtDescricaoEdit
+        'txtDescEdit
         '
-        Me.txtDescricaoEdit.Location = New System.Drawing.Point(6, 85)
-        Me.txtDescricaoEdit.Name = "txtDescricaoEdit"
-        Me.txtDescricaoEdit.Size = New System.Drawing.Size(342, 20)
-        Me.txtDescricaoEdit.TabIndex = 1
+        Me.txtDescEdit.Location = New System.Drawing.Point(6, 85)
+        Me.txtDescEdit.Name = "txtDescEdit"
+        Me.txtDescEdit.Size = New System.Drawing.Size(342, 20)
+        Me.txtDescEdit.TabIndex = 1
         '
-        'txtPrecoProdEdit
+        'txtPrecoFabEdit
         '
-        Me.txtPrecoProdEdit.Location = New System.Drawing.Point(6, 124)
-        Me.txtPrecoProdEdit.Name = "txtPrecoProdEdit"
-        Me.txtPrecoProdEdit.Size = New System.Drawing.Size(342, 20)
-        Me.txtPrecoProdEdit.TabIndex = 2
+        Me.txtPrecoFabEdit.Location = New System.Drawing.Point(6, 124)
+        Me.txtPrecoFabEdit.Name = "txtPrecoFabEdit"
+        Me.txtPrecoFabEdit.Size = New System.Drawing.Size(342, 20)
+        Me.txtPrecoFabEdit.TabIndex = 2
         '
         'txtPrecoVendaEdit
         '
@@ -109,9 +109,9 @@ Partial Class GerenciarProdutos
         Me.lblPrecoProd.AutoSize = True
         Me.lblPrecoProd.Location = New System.Drawing.Point(3, 108)
         Me.lblPrecoProd.Name = "lblPrecoProd"
-        Me.lblPrecoProd.Size = New System.Drawing.Size(89, 13)
+        Me.lblPrecoProd.Size = New System.Drawing.Size(102, 13)
         Me.lblPrecoProd.TabIndex = 6
-        Me.lblPrecoProd.Text = "Preço do produto"
+        Me.lblPrecoProd.Text = "Custo de fabricação"
         '
         'lblPrecoVenda
         '
@@ -129,9 +129,9 @@ Partial Class GerenciarProdutos
         Me.gbEditar.Controls.Add(Me.lblPrecoVenda)
         Me.gbEditar.Controls.Add(Me.txtNomeEdit)
         Me.gbEditar.Controls.Add(Me.lblPrecoProd)
-        Me.gbEditar.Controls.Add(Me.txtDescricaoEdit)
+        Me.gbEditar.Controls.Add(Me.txtDescEdit)
         Me.gbEditar.Controls.Add(Me.lblDescricao)
-        Me.gbEditar.Controls.Add(Me.txtPrecoProdEdit)
+        Me.gbEditar.Controls.Add(Me.txtPrecoFabEdit)
         Me.gbEditar.Controls.Add(Me.txtPrecoVendaEdit)
         Me.gbEditar.Location = New System.Drawing.Point(6, 113)
         Me.gbEditar.Name = "gbEditar"
@@ -159,6 +159,15 @@ Partial Class GerenciarProdutos
         Me.gbProdutos.TabIndex = 9
         Me.gbProdutos.TabStop = False
         Me.gbProdutos.Text = "Produtos"
+        '
+        'btnDeletar
+        '
+        Me.btnDeletar.Location = New System.Drawing.Point(139, 62)
+        Me.btnDeletar.Name = "btnDeletar"
+        Me.btnDeletar.Size = New System.Drawing.Size(75, 23)
+        Me.btnDeletar.TabIndex = 1
+        Me.btnDeletar.Text = "Deletar"
+        Me.btnDeletar.UseVisualStyleBackColor = True
         '
         'cbProdutosEdit
         '
@@ -311,15 +320,6 @@ Partial Class GerenciarProdutos
         Me.txtPrecoFabCad.Size = New System.Drawing.Size(342, 20)
         Me.txtPrecoFabCad.TabIndex = 19
         '
-        'btnDeletar
-        '
-        Me.btnDeletar.Location = New System.Drawing.Point(139, 62)
-        Me.btnDeletar.Name = "btnDeletar"
-        Me.btnDeletar.Size = New System.Drawing.Size(75, 23)
-        Me.btnDeletar.TabIndex = 1
-        Me.btnDeletar.Text = "Deletar"
-        Me.btnDeletar.UseVisualStyleBackColor = True
-        '
         'GerenciarProdutos
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
@@ -343,8 +343,8 @@ Partial Class GerenciarProdutos
     End Sub
 
     Friend WithEvents txtNomeEdit As TextBox
-    Friend WithEvents txtDescricaoEdit As TextBox
-    Friend WithEvents txtPrecoProdEdit As TextBox
+    Friend WithEvents txtDescEdit As TextBox
+    Friend WithEvents txtPrecoFabEdit As TextBox
     Friend WithEvents txtPrecoVendaEdit As TextBox
     Friend WithEvents lblNome As Label
     Friend WithEvents lblDescricao As Label
