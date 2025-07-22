@@ -51,6 +51,7 @@ Partial Class RemoverEstoque
         '
         'btnRemover
         '
+        Me.btnRemover.CausesValidation = False
         Me.btnRemover.Location = New System.Drawing.Point(72, 211)
         Me.btnRemover.Name = "btnRemover"
         Me.btnRemover.Size = New System.Drawing.Size(62, 23)
@@ -112,7 +113,7 @@ Partial Class RemoverEstoque
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow
         Me.Name = "RemoverEstoque"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "RemoverEstoque"
+        Me.Text = "Remover do Estoque"
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
