@@ -7,11 +7,20 @@ Public Class HelperSQL
     Private ReadOnly pass As String = "admin"
     Public ReadOnly strCon = $"Server={server};Database={db};User Id={user};Password={pass};"
 
-    Public Function Select_(colunas As List(Of String), tabela As String, Optional coluna As String = "", Optional valor As Integer = 0, Optional orderBy As String = "") As DataTable
+    Public Function Select_(
+                           colunas As List(Of String),
+                           tabela As String,
+                           Optional coluna As String = "",
+                           Optional valor As Integer = 0,
+                           Optional like_ As String = "",
+                           Optional orderBy As String = ""
+                           ) As DataTable
         Dim query = $"SELECT {String.Join(", ", colunas)} FROM {tabela} "
 
-        If coluna <> "" Then
+        If coluna <> "" And valor <> 0 Then
             query &= $"WHERE {coluna} = @{coluna}"
+        ElseIf coluna <> "" And like_ <> "" Then
+            query &= $"WHERE {coluna} LIKE '{like_}%'"
         End If
 
         If orderBy <> "" Then
@@ -20,7 +29,7 @@ Public Class HelperSQL
 
         Using con As New SqlConnection(strCon)
             Using cmd As New SqlCommand(query, con)
-                If coluna <> "" Then
+                If coluna <> "" And valor <> 0 Then
                     cmd.Parameters.AddWithValue($"@{coluna}", valor)
                 End If
                 Try
