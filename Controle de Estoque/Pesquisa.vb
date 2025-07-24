@@ -2,6 +2,7 @@
 
 Public Class Pesquisa
     Private helperSql As New HelperSQL
+    Private IdSelecionado
 
     Private Sub Pesquisa_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AcceptButton = btnPesquisar
@@ -9,7 +10,36 @@ Public Class Pesquisa
         DateTimePicker1.Visible = False
     End Sub
 
+    Private Sub SetIdSelecionado()
+        IdSelecionado = dgvResultado.CurrentRow.Cells("id").Value
+    End Sub
+
     Private Sub btnPesquisar_Click(sender As Object, e As EventArgs) Handles btnPesquisar.Click
+        AtualizaDgv()
+    End Sub
+
+    Private Sub rbData_CheckedChanged(sender As Object, e As EventArgs) Handles rbData.CheckedChanged
+        DateTimePicker1.Visible = Not DateTimePicker1.Visible
+    End Sub
+
+    Private Sub btnGerenciar_Click(sender As Object, e As EventArgs) Handles btnGerenciar.Click
+        If dgvResultado.CurrentRow IsNot Nothing Then
+            SetIdSelecionado()
+            Dim form As New GerenciarProdutos(IdSelecionado)
+            form.ShowDialog()
+            AtualizaDgv()
+        End If
+    End Sub
+
+    Private Sub btnHistorico_Click(sender As Object, e As EventArgs) Handles btnHistorico.Click
+        If dgvResultado.CurrentRow IsNot Nothing Then
+            SetIdSelecionado()
+            Dim form As New HistoricoMovimentacoes(IdSelecionado)
+            form.ShowDialog()
+        End If
+    End Sub
+
+    Private Sub AtualizaDgv()
         Dim pesquisa = txtPesquisa.Text
         Dim colunaPesquisa = "nome"
         Dim colunas As New List(Of String) From {
@@ -55,9 +85,5 @@ Public Class Pesquisa
         dgvResultado.Columns("Preço de venda").Width = 80
         dgvResultado.Columns("Criado em").Width = 120
         dgvResultado.Columns("Modificado em").Width = 120
-    End Sub
-
-    Private Sub rbData_CheckedChanged(sender As Object, e As EventArgs) Handles rbData.CheckedChanged
-        DateTimePicker1.Visible = Not DateTimePicker1.Visible
     End Sub
 End Class

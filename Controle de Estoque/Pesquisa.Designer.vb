@@ -30,6 +30,8 @@ Partial Class Pesquisa
         Me.rbData = New System.Windows.Forms.RadioButton()
         Me.GroupBox1 = New System.Windows.Forms.GroupBox()
         Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
+        Me.btnGerenciar = New System.Windows.Forms.Button()
+        Me.btnHistorico = New System.Windows.Forms.Button()
         CType(Me.dgvResultado, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox1.SuspendLayout()
         Me.SuspendLayout()
@@ -110,11 +112,31 @@ Partial Class Pesquisa
         Me.DateTimePicker1.Size = New System.Drawing.Size(289, 20)
         Me.DateTimePicker1.TabIndex = 7
         '
+        'btnGerenciar
+        '
+        Me.btnGerenciar.Location = New System.Drawing.Point(838, 26)
+        Me.btnGerenciar.Name = "btnGerenciar"
+        Me.btnGerenciar.Size = New System.Drawing.Size(75, 20)
+        Me.btnGerenciar.TabIndex = 8
+        Me.btnGerenciar.Text = "Gerenciar"
+        Me.btnGerenciar.UseVisualStyleBackColor = True
+        '
+        'btnHistorico
+        '
+        Me.btnHistorico.Location = New System.Drawing.Point(757, 26)
+        Me.btnHistorico.Name = "btnHistorico"
+        Me.btnHistorico.Size = New System.Drawing.Size(75, 20)
+        Me.btnHistorico.TabIndex = 9
+        Me.btnHistorico.Text = "Historico"
+        Me.btnHistorico.UseVisualStyleBackColor = True
+        '
         'Pesquisa
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(925, 461)
+        Me.Controls.Add(Me.btnHistorico)
+        Me.Controls.Add(Me.btnGerenciar)
         Me.Controls.Add(Me.DateTimePicker1)
         Me.Controls.Add(Me.GroupBox1)
         Me.Controls.Add(Me.btnPesquisar)
@@ -139,4 +161,6 @@ Partial Class Pesquisa
     Friend WithEvents rbData As RadioButton
     Friend WithEvents GroupBox1 As GroupBox
     Friend WithEvents DateTimePicker1 As DateTimePicker
+    Friend WithEvents btnGerenciar As Button
+    Friend WithEvents btnHistorico As Button
 End Class

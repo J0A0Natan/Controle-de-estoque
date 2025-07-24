@@ -2,34 +2,15 @@
 
 Public Class HistoricoMovimentacoes
     Private helperSql As New HelperSQL
+    Private Id
 
-    Private Sub ComboBox1_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbProds.SelectedValueChanged
-        If cbProds.SelectedValue Is Nothing OrElse TypeOf cbProds.SelectedValue Is DataRowView Then
-            'Console.WriteLine("Funciona!!!--------------------------------")
-            Exit Sub
-        End If
+    Sub New(IdProd)
 
-        Dim query = $"
-            SELECT m.tipo Tipo, m.quantidade Quantidade, m.data_mov Data
-            FROM movimentacoes m
-            INNER JOIN produtos p ON p.id = m.id_produto
-            WHERE m.id_produto = {cbProds.SelectedValue}
-            ORDER BY Data DESC"
+        ' Esta chamada é requerida pelo designer.
+        InitializeComponent()
 
-        Dim dt As New DataTable
-        Using con As New SqlConnection(helperSql.strCon)
-            Using cmd As New SqlCommand(query, con)
-                Try
-                    con.Open()
-                    Dim da As New SqlDataAdapter(cmd)
-                    da.Fill(dt)
-                Catch ex As Exception
-
-                End Try
-            End Using
-        End Using
-
-        dgvHistoricoMovs.DataSource = dt
+        ' Adicione qualquer inicialização após a chamada InitializeComponent().
+        Id = IdProd
     End Sub
 
     Private Sub HistoricoMovimentacoes_Load(sender As Object, e As EventArgs) Handles MyBase.Load
@@ -62,7 +43,7 @@ Public Class HistoricoMovimentacoes
         Dim result As Boolean = False
         For Each valor In dt.Rows
             'Console.WriteLine($"Valor: {valor("id")}")
-            If valor("id") = Form1.IdSelecionado Then
+            If valor("id") = Id Then
                 'cbProds.SelectedValue = Form1.IdSelecionado
                 result = True
                 Exit For
@@ -70,11 +51,40 @@ Public Class HistoricoMovimentacoes
         Next
 
         If result Then
-            cbProds.SelectedValue = Form1.IdSelecionado
+            cbProds.SelectedValue = Id
         Else
             MessageBox.Show("Nenhum histórico encontrado!", "Históricos", MessageBoxButtons.OK, MessageBoxIcon.Exclamation)
             Close()
         End If
 
+    End Sub
+
+    Private Sub ComboBox1_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbProds.SelectedValueChanged
+        If cbProds.SelectedValue Is Nothing OrElse TypeOf cbProds.SelectedValue Is DataRowView Then
+            'Console.WriteLine("Funciona!!!--------------------------------")
+            Exit Sub
+        End If
+
+        Dim query = $"
+            SELECT m.tipo Tipo, m.quantidade Quantidade, m.data_mov Data
+            FROM movimentacoes m
+            INNER JOIN produtos p ON p.id = m.id_produto
+            WHERE m.id_produto = {cbProds.SelectedValue}
+            ORDER BY Data DESC"
+
+        Dim dt As New DataTable
+        Using con As New SqlConnection(helperSql.strCon)
+            Using cmd As New SqlCommand(query, con)
+                Try
+                    con.Open()
+                    Dim da As New SqlDataAdapter(cmd)
+                    da.Fill(dt)
+                Catch ex As Exception
+
+                End Try
+            End Using
+        End Using
+
+        dgvHistoricoMovs.DataSource = dt
     End Sub
 End Class

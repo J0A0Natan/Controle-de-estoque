@@ -3,12 +3,22 @@
 Public Class GerenciarProdutos
     Private prod As New Produto
     Private helperSql As New HelperSQL
+    Private Id
+
+    Sub New(idProd As Integer)
+
+        ' Esta chamada é requerida pelo designer.
+        InitializeComponent()
+
+        ' Adicione qualquer inicialização após a chamada InitializeComponent().
+        Id = idProd
+    End Sub
 
     Private Sub GerenciarProdutos_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AtualizaProds()
         cbProdutosEdit.DisplayMember = "Produto"
         cbProdutosEdit.ValueMember = "id"
-        cbProdutosEdit.SelectedValue = Form1.IdSelecionado
+        cbProdutosEdit.SelectedValue = Id
     End Sub
 
     Private Sub cbProdutos_SelectedValueChanged(sender As Object, e As EventArgs) Handles cbProdutosEdit.SelectedValueChanged

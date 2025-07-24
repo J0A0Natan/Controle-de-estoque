@@ -47,14 +47,16 @@
 
     Private Sub GerenciarProdutoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles GerenciarProdutoToolStripMenuItem.Click
         SetIdSelecionado()
-        GerenciarProdutos.ShowDialog()
+        Dim formGerenciar As New GerenciarProdutos(IdSelecionado)
+        formGerenciar.ShowDialog()
         SetLinhaSelecionada()
         AtualizaDgv()
     End Sub
 
     Private Sub HistoricoDeMovimentaçõesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoricoDeMovimentaçõesToolStripMenuItem.Click
         SetIdSelecionado()
-        HistoricoMovimentacoes.ShowDialog()
+        Dim form As New HistoricoMovimentacoes(IdSelecionado)
+        form.ShowDialog()
     End Sub
 
     Private Sub AdicionarAoEstoqueToolStripMenuItem_Click_1(sender As Object, e As EventArgs) Handles AdicionarAoEstoqueToolStripMenuItem.Click
@@ -73,6 +75,14 @@
 
     Private Sub PesquisaToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles PesquisaToolStripMenuItem.Click
         Pesquisa.ShowDialog()
+        AtualizaDgv()
+    End Sub
+
+    Private Sub AdicionarRemoverDoEstoqueToolStripMenuItem_Click(sender As Object, e As EventArgs)
+        SetIdSelecionado()
+        AdicionarRemoverEstoque.ShowDialog()
+        SetLinhaSelecionada()
+        AtualizaDgv()
     End Sub
 
     Private Sub dgvProdutos_CellFormatting(sender As Object, e As DataGridViewCellFormattingEventArgs) Handles dgvProdutos.CellFormatting

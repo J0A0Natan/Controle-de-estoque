@@ -79,6 +79,12 @@
     <Compile Include="AdicionarEstoque.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="AdicionarRemoverEstoque.Designer.vb">
+      <DependentUpon>AdicionarRemoverEstoque.vb</DependentUpon>
+    </Compile>
+    <Compile Include="AdicionarRemoverEstoque.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="GerenciarProdutos.Designer.vb">
       <DependentUpon>GerenciarProdutos.vb</DependentUpon>
     </Compile>
@@ -131,6 +137,9 @@
   <ItemGroup>
     <EmbeddedResource Include="AdicionarEstoque.resx">
       <DependentUpon>AdicionarEstoque.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AdicionarRemoverEstoque.resx">
+      <DependentUpon>AdicionarRemoverEstoque.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.vb</DependentUpon>
